@@ -3,6 +3,7 @@ import {LoginService} from "./login.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RolesEnum} from "./enums/roles.enum";
+import {ToasterService} from "../shared/toasts/toaster.service";
 
 @Component({
     selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent {
 
     constructor(private loginService: LoginService,
                 private router: Router,
+                private toasterService: ToasterService,
                 private fb: FormBuilder) {
     }
 
@@ -52,9 +54,10 @@ export class LoginComponent {
                         break
                 }
             },
-            error: (err) => {
+            error: () => {
                 this.isLoading = false
-                // display error message
+                this.toasterService.show('Invalid username or password', {className: 'bg-danger text-light'})
+
             }
         })
     }
