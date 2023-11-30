@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from "../admin.service";
 import {UserInterface} from "./user.interface";
+import {ToasterService} from "../../shared/toasts/toaster.service";
 
 @Component({
     selector: 'app-users',
@@ -10,7 +11,8 @@ import {UserInterface} from "./user.interface";
 export class UsersComponent implements OnInit {
     users: UserInterface[] = [];
     isLoading = false;
-    constructor(private adminService: AdminService) {
+    constructor(private adminService: AdminService,
+                private toasterService: ToasterService) {
     }
 
     ngOnInit() {
@@ -26,7 +28,7 @@ export class UsersComponent implements OnInit {
             },
             error: (err) => {
                 this.isLoading = false;
-                console.log(err);
+                this.toasterService.show('Error while getting list of users', {className: 'bg-danger text-light'})
             }
         })
     }
