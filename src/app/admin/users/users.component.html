@@ -29,34 +29,31 @@
 
                 <div class="user-container">
 
-                    <div class="user-top">
-                        <p>User</p>
-                        <p>Actions</p>
-                    </div>
+                    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
-                    <ul class="user-list">
-                        <li class="user-item">
+                    <ul *ngIf="!isLoading" class="user-list">
+                        <li *ngFor="let user of users" class="user-item">
                             <div class="user-list-left">
-                                <p class="user-name">name</p>
+                                <p class="user-name">{{user.name}}</p>
                             </div>
 
                             <div class="user-list-left">
-                                <p class="user-name">email</p>
+                                <p class="user-name">{{user.email}}</p>
                             </div>
 
 
 
                             <div class="user-list-left">
-                                <p class="user-name">address</p>
+                                <p class="user-name">{{user.address.street}}</p>
                             </div>
 
 
                             <div class="user-list-left">
-                                <p class="user-name">phone</p>
+                                <p class="user-name">{{user.phone}}</p>
                             </div>
 
                             <div class="user-list-left">
-                                <p class="user-name">company</p>
+                                <p class="user-name">{{user.company.name}}</p>
                             </div>
 
 

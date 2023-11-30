@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {environment} from "../../environments/environment";
 import {LoginInterface} from "./interfaces/login.interface";
 import {BehaviorSubject, Observable, of, throwError} from "rxjs";
 import {User} from "./model/user";
