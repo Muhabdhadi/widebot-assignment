@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {LoginInterface} from "./interfaces/login.interface";
 import {BehaviorSubject, Observable, of, throwError} from "rxjs";
@@ -10,7 +9,6 @@ import {RolesEnum} from "./enums/roles.enum";
     providedIn: 'root'
 })
 export class LoginService {
-    loginBaseUrl = environment.jsonplaceholder;
     private $user: BehaviorSubject<{} | User> = new BehaviorSubject({});
     constructor() {}
 

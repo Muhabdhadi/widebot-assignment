@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {LoginService} from "./login.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {RolesEnum} from "./enums/roles.enum";
 
 @Component({
     selector: 'app-login',
@@ -43,9 +44,13 @@ export class LoginComponent {
         this.isLoading = true;
         // @ts-ignore
         this.loginService.login(this.loginForm.value).subscribe({
-            next: (res) => {
+            next: (loggedInRole) => {
                 this.isLoading = false
-                this.router.navigate(['/']);
+                switch (loggedInRole) {
+                    case RolesEnum.ADMIN:
+                        this.router.navigate(['/admin']);
+                        break
+                }
             },
             error: (err) => {
                 this.isLoading = false
