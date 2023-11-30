@@ -18,11 +18,13 @@
                             Please login to access your Spaces Dashboard
                         </p>
 
-                        <form>
+                        <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
 
                             <div class="form-group">
                                 <label for="Username">Username</label>
-                                <input type="email"
+                                <input  [ngStyle]="{'border-color': loginForm.get('userName')?.touched && loginForm.get('userName')?.hasError('required') ? 'red' : '#dee2e6'}"
+                                        formControlName="userName"
+                                        type="email"
                                         class="form-control"
                                         id="Username"
                                         placeholder="Username...."
@@ -32,9 +34,13 @@
 
                             <div class="form-group">
                                 <label for="Password">Password</label>
-                                <input type="password"
+                                <input
+                                        [ngStyle]="{'border-color': loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required') ? 'red' : '#dee2e6'}"
+                                        formControlName="password"
+                                        type="password"
                                         class="form-control"
                                         id="Password"
+                                        autocomplete="current-password"
                                         placeholder="********">
                             </div>
 
@@ -43,7 +49,7 @@
                                 <p class="login-forget">Forget Password?</p>
 
                                 <div>
-                                    <button class="login-btn">LOGIN</button>
+                                    <button [disabled]="isLoading" class="login-btn">LOGIN</button>
                                 </div>
 
                             </div>
