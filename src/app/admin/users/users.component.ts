@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
                 this.isLoading = false;
                 this.users = users;
             },
-            error: (err) => {
+            error: () => {
                 this.isLoading = false;
                 this.toasterService.show('Error while getting list of users', {className: 'bg-danger text-light'})
             }
