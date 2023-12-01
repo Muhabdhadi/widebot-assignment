@@ -31,10 +31,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.deleteUserSubscription.unsubscribe();
-        this.closeConfirmationModalSubscription.unsubscribe()
-        this.userModalCancelSubscription.unsubscribe();
-        this.updateUserSubscription.unsubscribe();
+        this.deleteUserSubscription?.unsubscribe();
+        this.closeConfirmationModalSubscription?.unsubscribe()
+        this.userModalCancelSubscription?.unsubscribe();
+        this.updateUserSubscription?.unsubscribe();
     }
 
     getUsers() {

@@ -5,14 +5,14 @@
 
     <div>
         <ul class="navbar-list">
-            <li><a routerLink="/user">HOME</a></li>
+            <li><a routerLink="./admin">HOME</a></li>
             <li><a>ABOUT</a></li>
             <li><a>CONTACT</a></li>
-            <li>
-                <a routerLink="/login" class="login-btn">LOGIN</a>
+            <li *ngIf="!user">
+                <a routerLink="./login" class="login-btn">LOGIN</a>
             </li>
 
-            <li>
+            <li *ngIf="user" (click)="logout()">
                 <a class="login-btn">LOGOUT</a>
             </li>
         </ul>

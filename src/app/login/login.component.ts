@@ -4,6 +4,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {RolesEnum} from "./enums/roles.enum";
 import {ToasterService} from "../shared/toasts/toaster.service";
+import {LoginInterface} from "./interfaces/login.interface";
 
 @Component({
     selector: 'app-login',
@@ -44,8 +45,8 @@ export class LoginComponent {
 
     login() {
         this.isLoading = true;
-        // @ts-ignore
-        this.loginService.login(this.loginForm.value).subscribe({
+
+        this.loginService.login(this.loginForm.value as LoginInterface).subscribe({
             next: (loggedInRole) => {
                 this.isLoading = false
                 switch (loggedInRole) {
