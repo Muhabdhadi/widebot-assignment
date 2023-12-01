@@ -4,6 +4,7 @@ import {UserInterface} from "./user.interface";
 import {ToasterService} from "../../shared/toasts/toaster.service";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {UserModalComponent} from "../user-modal/user-modal.component";
+import {ConfirmationModalComponent} from "../confirmation-modal/confirmation-modal.component";
 
 @Component({
     selector: 'app-users',
@@ -14,6 +15,7 @@ export class UsersComponent implements OnInit {
     users: UserInterface[] = [];
     isLoading = false;
     userModalComponentRef!: NgbModalRef;
+    confirmationModalRef!: NgbModalRef;
     constructor(private adminService: AdminService,
                 private modalService: NgbModal,
                 private toasterService: ToasterService) {
@@ -58,4 +60,28 @@ export class UsersComponent implements OnInit {
             this.users.splice(userIndex, 0, updatedUser);
         }
     }
+
+    onDeleteUser(user: UserInterface) {
+        this.confirmationModalRef = this.modalService.open(ConfirmationModalComponent, {centered: true});
+
+        this.confirmationModalRef.componentInstance.user = user
+
+        this.confirmationModalRef.componentInstance.close.subscribe({
+            next: () => {
+                this.confirmationModalRef.close();
+            }
+        });
+
+        this.confirmationModalRef.componentInstance.deletedUser.subscribe({
+            next: (deletedUser: UserInterface) => {
+                const deletedUserIndex = this.users.findIndex(user => user.id === deletedUser.id);
+
+                if (deletedUserIndex !== -1) {
+                    this.users.splice(deletedUserIndex, 1);
+                }
+            }
+        })
+
+    }
+
 }

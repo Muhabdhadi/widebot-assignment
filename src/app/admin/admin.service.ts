@@ -18,4 +18,8 @@ export class AdminService {
     updateUser(user: UserInterface): Observable<UserInterface> {
         return this.http.put<UserInterface>(`${this.usersBaseUrl}/${user.id}`, user);
     }
+
+    deleteUser(user: UserInterface) {
+        return this.http.delete<UserInterface>(`${this.usersBaseUrl}/${user.id}`);
+    }
 }
