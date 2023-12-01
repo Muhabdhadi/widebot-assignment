@@ -10,7 +10,9 @@
         </div>
 
         <div (click)="deleteUser()">
-            <button class="modal-yes">Yes</button>
+            <button [disabled]="isLoading" class="modal-yes">
+                Yes <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
+            </button>
         </div>
     </div>
 </div>

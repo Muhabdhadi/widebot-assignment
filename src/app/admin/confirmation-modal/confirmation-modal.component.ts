@@ -12,6 +12,7 @@ export class ConfirmationModalComponent {
     user!: UserInterface;
     close: EventEmitter<any> = new EventEmitter();
     deletedUser: EventEmitter<UserInterface> = new EventEmitter();
+    isLoading = false;
     constructor(private adminService: AdminService,
                 private toasterService: ToasterService) {}
 
@@ -20,13 +21,16 @@ export class ConfirmationModalComponent {
     }
 
     deleteUser() {
+        this.isLoading = true;
         this.adminService.deleteUser(this.user).subscribe({
             next: () => {
+                this.isLoading = false
                 this.toasterService.show(`User have been deleted successfully`, {className: 'bg-success text-light'});
                 this.onClose();
                 this.deletedUser.emit(this.user);
             },
             error: () => {
+                this.isLoading = false
                 this.toasterService.show(`Error while deleting the user`, {className: 'bg-danger text-light'})
             }
         });
