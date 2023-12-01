@@ -5,11 +5,13 @@ import {CommonModule} from "@angular/common";
 import {SharedModule} from "../shared/shared.module";
 import { UserModalComponent } from './user-modal/user-modal.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {ConfirmationModalComponent} from "./confirmation-modal/confirmation-modal.component";
 
 @NgModule({
     declarations: [
     UsersComponent,
-    UserModalComponent
+    UserModalComponent,
+    ConfirmationModalComponent
   ],
     imports: [
         CommonModule,
