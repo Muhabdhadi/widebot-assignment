@@ -7,15 +7,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './shared/header/header.component';
 import {ToastsComponent} from "./shared/toasts/toasts.component";
-import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        ToastsComponent,
-        ProfileComponent
-
+        ToastsComponent
     ],
     imports: [
         BrowserModule,
