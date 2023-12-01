@@ -14,4 +14,8 @@ export class AdminService {
     getUsers(): Observable<UserInterface[]> {
         return this.http.get<UserInterface[]>(this.usersBaseUrl);
     }
+
+    updateUser(user: UserInterface): Observable<UserInterface> {
+        return this.http.put<UserInterface>(`${this.usersBaseUrl}/${user.id}`, user);
+    }
 }

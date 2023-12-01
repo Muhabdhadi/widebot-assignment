@@ -4,6 +4,7 @@ import { UsersComponent } from './users/users.component';
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "../shared/shared.module";
 import { UserModalComponent } from './user-modal/user-modal.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -12,6 +13,7 @@ import { UserModalComponent } from './user-modal/user-modal.component';
   ],
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         AdminRoutingModule,
         SharedModule
     ]

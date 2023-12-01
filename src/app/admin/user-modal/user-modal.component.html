@@ -1,36 +1,38 @@
 <div class="update-modal">
 
-    <div class="update-modal-avatar">
-        <img alt="avatar">
-    </div>
-
     <div class="update-modal-avatar--new">
         <img src="assets/images/user-modal/icons8-user.png" alt="avatar">
     </div>
 
-    <form>
+    <form [formGroup]="userForm">
         <div class="form-group">
             <label class="label" for="name">Name</label>
-            <input  type="text"
+            <input [ngStyle]="{'border-color': userForm.get('name')?.touched && userForm.get('name')?.hasError('required') ? 'red' : '#D6DBE4'}"
+                    type="text"
+                    formControlName="name"
                     class="form-control"
                     id="name"
                     placeholder="name...">
         </div>
 
         <div class="form-group">
-            <label class="label" for="jobTitle">Job title</label>
-            <input  type="text"
+            <label class="label" for="jobTitle">Email</label>
+            <input [ngStyle]="{'border-color': userForm.get('email')?.touched && userForm.get('email')?.hasError('required') ? 'red' : '#D6DBE4'}"
+                    type="text"
+                    formControlName="email"
                     class="form-control"
                     id="jobTitle"
                     placeholder="Job title...">
         </div>
 
         <div class="update-modal-actions">
-            <button class="cancel">Cancel</button>
+            <button (click)="onCancel()" class="cancel">Cancel</button>
 
-            <button class="save">Save</button>
+            <button [disabled]="isLoadingUpdate" *ngIf="user" (click)="onUpdateUser()" class="save">
+                Save <div *ngIf="isLoadingUpdate" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
+            </button>
 
-            <button class="save">Add</button>
+            <button *ngIf="!user" class="save">Add</button>
 
 
         </div>

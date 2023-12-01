@@ -45,5 +45,17 @@ export class UsersComponent implements OnInit {
                 this.userModalComponentRef.close();
             }
         });
+        this.userModalComponentRef.componentInstance.updatedUser.subscribe({
+            next: (updatedUser: UserInterface) => {
+               this.updateUserByIndex(updatedUser);
+            }
+        })
+    }
+
+    updateUserByIndex(updatedUser: UserInterface) {
+        const userIndex = this.users.findIndex(user => user.id === updatedUser.id);
+        if (userIndex !== -1) {
+            this.users.splice(userIndex, 0, updatedUser);
+        }
     }
 }
