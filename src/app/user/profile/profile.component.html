@@ -9,18 +9,36 @@
                         <!-- Form Group (username)-->
                         <div class="mb-3">
                             <label class="small mb-1" for="inputUsername">Username</label>
-                            <input class="form-control" formControlName="username" id="inputUsername" type="text" placeholder="Enter your username">
+                            <input
+                                   [ngStyle]="{'border-color': profileForm.get('username')?.touched && profileForm.get('username')?.hasError('required') ? 'red' : '#D6DBE4'}"
+                                   class="form-control"
+                                   formControlName="username"
+                                   id="inputUsername"
+                                   type="text"
+                                   placeholder="Enter your username">
                         </div>
 
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFirstName">name</label>
-                                <input class="form-control" formControlName="name" id="inputFirstName" type="text" placeholder="Enter your name">
+                                <input
+                                        [ngStyle]="{'border-color': profileForm.get('name')?.touched && profileForm.get('name')?.hasError('required') ? 'red' : '#D6DBE4'}"
+                                       class="form-control"
+                                       formControlName="name"
+                                       id="inputFirstName"
+                                       type="text"
+                                       placeholder="Enter your name">
                             </div>
 
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFirstName">Email</label>
-                                <input class="form-control" formControlName="email" id="email" type="text" placeholder="Enter your email address">
+                                <input
+                                        [ngStyle]="{'border-color': profileForm.get('email')?.touched && profileForm.get('email')?.hasError('required') ? 'red' : '#D6DBE4'}"
+                                       class="form-control"
+                                       formControlName="email"
+                                       id="email"
+                                       type="text"
+                                       placeholder="Enter your email address">
                             </div>
                         </div>
                         <!-- Form Row        -->
@@ -28,16 +46,30 @@
                             <!-- Form Group (website)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputOrgName">Website</label>
-                                <input class="form-control" formControlName="website" id="inputOrgName" type="text" placeholder="Enter your website address">
+                                <input
+                                        [ngStyle]="{'border-color': profileForm.get('website')?.touched && profileForm.get('website')?.hasError('required') ? 'red' : '#D6DBE4'}"
+                                       class="form-control"
+                                       formControlName="website"
+                                       id="inputOrgName"
+                                       type="text"
+                                       placeholder="Enter your website address">
                             </div>
                             <!-- Form Group (phone)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLocation">Phone</label>
-                                <input class="form-control" formControlName="phone" id="inputLocation" type="text" placeholder="Enter your phone number">
+                                <input
+                                       [ngStyle]="{'border-color': profileForm.get('phone')?.touched && profileForm.get('phone')?.hasError('required') ? 'red' : '#D6DBE4'}"
+                                       class="form-control"
+                                       formControlName="phone"
+                                       id="inputLocation"
+                                       type="text"
+                                       placeholder="Enter your phone number">
                             </div>
                         </div>
                         <!-- Save changes button-->
-                        <button class="save" type="button">Save changes</button>
+                        <button [disabled]="isLoadingUpdate" (click)="onUpdateUser()" class="save" type="button">
+                            Update <div *ngIf="isLoadingUpdate" class="spinner-border spinner-border-sm text-light" role="status"></div>
+                        </button>
                     </form>
                 </div>
             </div>

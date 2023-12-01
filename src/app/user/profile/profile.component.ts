@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../user.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {UserInterface} from "../../admin/users/user.interface";
+import {AdminService} from "../../admin/admin.service";
+import {ToasterService} from "../../shared/toasts/toaster.service";
 
 @Component({
     selector: 'app-profile',
@@ -11,12 +13,17 @@ import {UserInterface} from "../../admin/users/user.interface";
 export class ProfileComponent implements OnInit {
     profileForm = this.fb.group({
         name: ['', Validators.required],
-        username: [''],
-        email: [''],
-        website: [''],
-        phone: ['']
+        username: ['', Validators.required],
+        email: ['', Validators.required],
+        website: ['', Validators.required],
+        phone: ['', Validators.required]
     })
-    constructor(private userService: UserService, private fb: FormBuilder) {}
+    user: UserInterface | null = null;
+    isLoadingUpdate = false;
+    constructor(private userService: UserService,
+                private adminService: AdminService,
+                private toasterService: ToasterService,
+                private fb: FormBuilder) {}
 
     ngOnInit() {
         this.getUserById();
@@ -25,7 +32,7 @@ export class ProfileComponent implements OnInit {
     getUserById() {
         this.userService.getUserById('1').subscribe({
             next: (user) => {
-                console.log(user);
+                this.user = user;
                 this.initializeProfileForm(user);
             }
         })
@@ -38,6 +45,42 @@ export class ProfileComponent implements OnInit {
             phone: user.phone,
             username: user.username,
             website: user.website
+        });
+    }
+
+    updateUserDetails() {
+        this.isLoadingUpdate = true;
+        const user: UserInterface = {
+            ...this.user,
+            ...this.profileForm.value as UserInterface
+        }
+        this.adminService.updateUser(user).subscribe({
+            next: (updateUser) => {
+                this.isLoadingUpdate = false;
+                this.toasterService.show(`profile details been update successfully`, {className: 'bg-success text-light'});
+                this.initializeProfileForm(updateUser);
+            },
+            error: () => {
+                this.toasterService.show(`Error while update ${user.name} user`, {className: 'bg-danger text-light'})
+                this.isLoadingUpdate = false;
+            }
+        })
+    }
+
+    onUpdateUser() {
+        this.validateLoginForm();
+
+        if (this.profileForm.invalid) { return; }
+
+        this.updateUserDetails();
+    }
+
+    validateLoginForm() {
+        Object.values(this.profileForm.controls).forEach(control => {
+            if (control.invalid) {
+                control.markAsTouched();
+                control.updateValueAndValidity({onlySelf: true});
+            }
         });
     }
 }
