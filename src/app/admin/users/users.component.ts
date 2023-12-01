@@ -1,21 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AdminService} from "../admin.service";
 import {UserInterface} from "./user.interface";
 import {ToasterService} from "../../shared/toasts/toaster.service";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {UserModalComponent} from "../user-modal/user-modal.component";
 import {ConfirmationModalComponent} from "../confirmation-modal/confirmation-modal.component";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-users',
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
     users: UserInterface[] = [];
     isLoading = false;
     userModalComponentRef!: NgbModalRef;
     confirmationModalRef!: NgbModalRef;
+    closeConfirmationModalSubscription!: Subscription;
+    deleteUserSubscription!: Subscription;
+    userModalCancelSubscription!: Subscription;
+    updateUserSubscription!: Subscription;
     constructor(private adminService: AdminService,
                 private modalService: NgbModal,
                 private toasterService: ToasterService) {
@@ -23,6 +28,13 @@ export class UsersComponent implements OnInit {
 
     ngOnInit() {
         this.getUsers();
+    }
+
+    ngOnDestroy() {
+        this.deleteUserSubscription.unsubscribe();
+        this.closeConfirmationModalSubscription.unsubscribe()
+        this.userModalCancelSubscription.unsubscribe();
+        this.updateUserSubscription.unsubscribe();
     }
 
     getUsers() {
@@ -42,12 +54,12 @@ export class UsersComponent implements OnInit {
     openUserModal(user: any) {
         this.userModalComponentRef = this.modalService.open(UserModalComponent, {centered: true});
         this.userModalComponentRef.componentInstance.user = user;
-        this.userModalComponentRef.componentInstance.cancel.subscribe({
+        this.userModalCancelSubscription = this.userModalComponentRef.componentInstance.cancel.subscribe({
             next: () => {
                 this.userModalComponentRef.close();
             }
         });
-        this.userModalComponentRef.componentInstance.updatedUser.subscribe({
+        this.updateUserSubscription = this.userModalComponentRef.componentInstance.updatedUser.subscribe({
             next: (updatedUser: UserInterface) => {
                this.updateUserByIndex(updatedUser);
             }
@@ -66,13 +78,13 @@ export class UsersComponent implements OnInit {
 
         this.confirmationModalRef.componentInstance.user = user
 
-        this.confirmationModalRef.componentInstance.close.subscribe({
+        this.closeConfirmationModalSubscription = this.confirmationModalRef.componentInstance.close.subscribe({
             next: () => {
                 this.confirmationModalRef.close();
             }
         });
 
-        this.confirmationModalRef.componentInstance.deletedUser.subscribe({
+        this.deleteUserSubscription = this.confirmationModalRef.componentInstance.deletedUser.subscribe({
             next: (deletedUser: UserInterface) => {
                 const deletedUserIndex = this.users.findIndex(user => user.id === deletedUser.id);
 

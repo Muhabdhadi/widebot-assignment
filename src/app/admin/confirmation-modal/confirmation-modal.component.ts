@@ -12,7 +12,8 @@ export class ConfirmationModalComponent {
     user!: UserInterface;
     close: EventEmitter<any> = new EventEmitter();
     deletedUser: EventEmitter<UserInterface> = new EventEmitter();
-    constructor(private adminService: AdminService, private toasterService: ToasterService) {}
+    constructor(private adminService: AdminService,
+                private toasterService: ToasterService) {}
 
     onClose() {
         this.close.emit();
