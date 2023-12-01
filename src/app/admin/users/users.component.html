@@ -14,7 +14,7 @@
 
                     <p class="breadcrumb-title">User List</p>
 
-                    <div>
+                    <div (click)="openAddNewUserModal()">
                         <button class="breadcrumb-btn">+ New User</button>
                     </div>
                 </div>
@@ -44,16 +44,16 @@
 
 
                             <div class="user-list-left">
-                                <p class="user-name">{{user.address.street}}</p>
+                                <p class="user-name">{{user?.address?.street ? user.address.street :  '-'}}</p>
                             </div>
 
 
                             <div class="user-list-left">
-                                <p class="user-name">{{user.phone}}</p>
+                                <p class="user-name">{{user?.phone ? user.phone : '-'}}</p>
                             </div>
 
                             <div class="user-list-left">
-                                <p class="user-name">{{user.company.name}}</p>
+                                <p class="user-name">{{user?.company?.name ? user.company.name : '-'}}</p>
                             </div>
 
 

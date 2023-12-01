@@ -96,4 +96,19 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     }
 
+    openAddNewUserModal() {
+        this.userModalComponentRef = this.modalService.open(UserModalComponent, { centered: true });
+        this.userModalComponentRef.componentInstance.cancel.subscribe({
+            next: () => {
+                this.userModalComponentRef.close();
+            }
+        });
+
+        this.userModalComponentRef.componentInstance.createdUser.subscribe({
+            next: (createdUser: UserInterface) => {
+                this.users.unshift(createdUser);
+            }
+        });
+    }
+
 }

@@ -13,11 +13,13 @@ export class UserModalComponent implements OnInit {
     @Input() user!: UserInterface;
     @Output() cancel: EventEmitter<any> = new EventEmitter();
     @Output() updatedUser: EventEmitter<UserInterface> = new EventEmitter();
+    @Output() createdUser: EventEmitter<UserInterface> = new EventEmitter();
     userForm = this.fb.group({
         name: ['', Validators.required],
         email: ['', Validators.required]
     });
     isLoadingUpdate = false;
+    isLoadingCreate = false;
 
     constructor(private fb: FormBuilder,
                 private adminService: AdminService,
@@ -78,5 +80,29 @@ export class UserModalComponent implements OnInit {
                 this.toasterService.show(`Error while update ${updatedUser.name} user`, {className: 'bg-danger text-light'})
             }
         })
+    }
+
+    onAddNewUser() {
+        this.validateLoginForm();
+
+        if (this.userForm.invalid) { return; }
+
+        this.createUser();
+    }
+
+    createUser() {
+        this.isLoadingCreate = true;
+        this.adminService.createUser(this.userForm.value as UserInterface).subscribe({
+            next: (createdUser: UserInterface) => {
+                this.isLoadingCreate = false;
+                this.createdUser.emit(createdUser);
+                this.onCancel();
+                this.toasterService.show(`${this.userForm.value.name} created successfully`, {className: 'bg-success text-light'});
+            },
+            error: () => {
+                this.isLoadingCreate = false;
+                this.toasterService.show(`Error while update ${this.userForm.value.name} user`, {className: 'bg-danger text-light'})
+            }
+        });
     }
 }

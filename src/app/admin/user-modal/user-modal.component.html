@@ -32,7 +32,9 @@
                 Save <div *ngIf="isLoadingUpdate" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
             </button>
 
-            <button *ngIf="!user" class="save">Add</button>
+            <button (click)="onAddNewUser()" *ngIf="!user" class="save">
+                Add  <div *ngIf="isLoadingCreate" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
+            </button>
 
 
         </div>

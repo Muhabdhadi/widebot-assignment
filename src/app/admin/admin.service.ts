@@ -22,4 +22,8 @@ export class AdminService {
     deleteUser(user: UserInterface) {
         return this.http.delete<UserInterface>(`${this.usersBaseUrl}/${user.id}`);
     }
+
+    createUser(user: UserInterface): Observable<UserInterface> {
+        return this.http.post<UserInterface>(`${this.usersBaseUrl}`, user);
+    }
 }
