@@ -1,17 +1,19 @@
 <div class="modal-body">
 
-    <p class="modal-message"> Are you sure you want to delete </p>
+    <p class="modal-message">{{"CONFIRMATION_MODAL.MESSAGE" | translate}}</p>
 
     <p class="modal-name">{{user.name}}</p>
 
     <div class="modal-actions">
         <div (click)="onClose()">
-            <button class="modal-no">No</button>
+            <button class="modal-no">
+                {{"CONFIRMATION_MODAL.NO" | translate}}
+            </button>
         </div>
 
         <div (click)="deleteUser()">
             <button [disabled]="isLoading" class="modal-yes">
-                Yes <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
+                {{"CONFIRMATION_MODAL.YES" | translate}} <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
             </button>
         </div>
     </div>

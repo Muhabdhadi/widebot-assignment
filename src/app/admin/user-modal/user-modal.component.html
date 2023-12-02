@@ -6,7 +6,7 @@
 
     <form [formGroup]="userForm">
         <div class="form-group">
-            <label class="label" for="name">Name</label>
+            <label class="label" for="name">{{"USER_MODAL.NAME" | translate}}</label>
             <input [ngStyle]="{'border-color': userForm.get('name')?.touched && userForm.get('name')?.hasError('required') ? 'red' : '#D6DBE4'}"
                     type="text"
                     formControlName="name"
@@ -16,24 +16,24 @@
         </div>
 
         <div class="form-group">
-            <label class="label" for="jobTitle">Email</label>
+            <label class="label" for="jobTitle">{{"USER_MODAL.EMAIL" | translate}}</label>
             <input [ngStyle]="{'border-color': userForm.get('email')?.touched && userForm.get('email')?.hasError('required') ? 'red' : '#D6DBE4'}"
                     type="text"
                     formControlName="email"
                     class="form-control"
                     id="jobTitle"
-                    placeholder="Job title...">
+                    placeholder="email address">
         </div>
 
         <div class="update-modal-actions">
-            <button (click)="onCancel()" class="cancel">Cancel</button>
+            <button (click)="onCancel()" class="cancel">{{"USER_MODAL.CANCEL" | translate}}</button>
 
             <button [disabled]="isLoadingUpdate" *ngIf="user" (click)="onUpdateUser()" class="save">
-                Save <div *ngIf="isLoadingUpdate" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
+                {{"USER_MODAL.SAVE" | translate}} <div *ngIf="isLoadingUpdate" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
             </button>
 
             <button (click)="onAddNewUser()" *ngIf="!user" class="save">
-                Add  <div *ngIf="isLoadingCreate" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
+                {{"USER_MODAL.ADD" | translate}}  <div *ngIf="isLoadingCreate" class="spinner-border spinner-border-sm text-light ml-2" role="status"></div>
             </button>
 
 

@@ -4,5 +4,18 @@
         "VIEW_AS_USER": "View as user",
         "RETURN_AS_ADMIN": "Return as admin",
         "LOGOUT": "LOGOUT"
+    },
+    "CONFIRMATION_MODAL": {
+        "MESSAGE": "Are you sure you want to delete?",
+        "YES": "Yes",
+        "NO": "No"
+    },
+    "USER_MODAL": {
+        "NAME": "name",
+        "EMAIL": "email",
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "ADD": "Add",
+        "ADD_NEW_USER": "+ New User"
     }
 }
