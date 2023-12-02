@@ -15,7 +15,10 @@
         "EMAIL": "email",
         "CANCEL": "Cancel",
         "SAVE": "Save",
-        "ADD": "Add",
+        "ADD": "Add"
+    },
+    "USERS_DASHBOARD": {
+        "USERS_LIST": "Users List",
         "ADD_NEW_USER": "+ New User"
     }
 }
