@@ -53,15 +53,26 @@ export class UsersComponent implements OnInit, OnDestroy {
 
     openUserModal(user: any) {
         this.userModalComponentRef = this.modalService.open(UserModalComponent, {centered: true});
+
         this.userModalComponentRef.componentInstance.user = user;
+
+        this.onUserModalCancelSubscription();
+
+        this.onUserUpdated()
+    }
+
+    onUserModalCancelSubscription() {
         this.userModalCancelSubscription = this.userModalComponentRef.componentInstance.cancel.subscribe({
             next: () => {
                 this.userModalComponentRef.close();
             }
         });
+    }
+
+    onUserUpdated() {
         this.updateUserSubscription = this.userModalComponentRef.componentInstance.updatedUser.subscribe({
             next: (updatedUser: UserInterface) => {
-               this.updateUserByIndex(updatedUser);
+                this.updateUserByIndex(updatedUser);
             }
         })
     }
@@ -78,12 +89,13 @@ export class UsersComponent implements OnInit, OnDestroy {
 
         this.confirmationModalRef.componentInstance.user = user
 
-        this.closeConfirmationModalSubscription = this.confirmationModalRef.componentInstance.close.subscribe({
-            next: () => {
-                this.confirmationModalRef.close();
-            }
-        });
+        this.onConfirmationModalCancel();
 
+        this.onDeleteUserSubscription();
+
+    }
+
+    onDeleteUserSubscription() {
         this.deleteUserSubscription = this.confirmationModalRef.componentInstance.deletedUser.subscribe({
             next: (deletedUser: UserInterface) => {
                 const deletedUserIndex = this.users.findIndex(user => user.id === deletedUser.id);
@@ -93,17 +105,33 @@ export class UsersComponent implements OnInit, OnDestroy {
                 }
             }
         })
+    }
 
+    onConfirmationModalCancel() {
+        this.closeConfirmationModalSubscription = this.confirmationModalRef.componentInstance.close.subscribe({
+            next: () => {
+                this.confirmationModalRef.close();
+            }
+        });
     }
 
     openAddNewUserModal() {
         this.userModalComponentRef = this.modalService.open(UserModalComponent, { centered: true });
+
+        this.onUserModalCancel();
+
+        this.onCreatedNewUser();
+    }
+
+    onUserModalCancel() {
         this.userModalComponentRef.componentInstance.cancel.subscribe({
             next: () => {
                 this.userModalComponentRef.close();
             }
         });
+    }
 
+    onCreatedNewUser() {
         this.userModalComponentRef.componentInstance.createdUser.subscribe({
             next: (createdUser: UserInterface) => {
                 this.users.unshift(createdUser);

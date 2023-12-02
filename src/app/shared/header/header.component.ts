@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.loginService.getUser.subscribe({
             next: (user) => {
-                console.log(user);
                 this.user = user;
             }
         });
@@ -37,7 +36,6 @@ export class HeaderComponent implements OnInit {
     }
 
     changeViewRole(tempRole: RolesEnum) {
-        console.log(tempRole);
         this.loginService.changeUserRole(tempRole);
     }
 
