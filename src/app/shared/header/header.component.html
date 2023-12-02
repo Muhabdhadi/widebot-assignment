@@ -5,15 +5,20 @@
 
     <div>
         <ul class="navbar-list">
-            <li><a routerLink="./admin">HOME</a></li>
+            <li><a routerLink="./admin">{{'HEADER.HOME' | translate}}</a></li>
             <li *ngIf="user?.role === RolesEnum?.ADMIN && user?.originalRole === RolesEnum?.ADMIN"
                 (click)="changeViewRole(RolesEnum.USER)">
-                <a routerLink="./admin">View as user</a>
+                <a routerLink="./admin">{{'HEADER.VIEW_AS_USER' | translate}}</a>
             </li>
 
             <li *ngIf="user?.role === RolesEnum?.USER && user?.originalRole === RolesEnum?.ADMIN"
                 (click)="changeViewRole(RolesEnum.ADMIN)">
-                <a routerLink="./admin">Return as admin</a>
+                <a routerLink="./admin">{{'HEADER.RETURN_AS_ADMIN' | translate}}</a>
+            </li>
+
+            <li>
+                <a (click)="changeLanguage()">AR</a>
+                <a>EN</a>
             </li>
 
             <li *ngIf="!user">
@@ -21,7 +26,7 @@
             </li>
 
             <li *ngIf="user" (click)="logout()">
-                <a class="login-btn">LOGOUT</a>
+                <a class="login-btn">{{'HEADER.LOGOUT' | translate}}</a>
             </li>
         </ul>
     </div>

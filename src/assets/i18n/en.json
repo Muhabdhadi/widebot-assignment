@@ -1,6 +1,8 @@
 {
     "HEADER": {
         "HOME": "HOME",
-        "VIEW_AS_USER": "View as user"
+        "VIEW_AS_USER": "View as user",
+        "RETURN_AS_ADMIN": "Return as admin",
+        "LOGOUT": "LOGOUT"
     }
 }
