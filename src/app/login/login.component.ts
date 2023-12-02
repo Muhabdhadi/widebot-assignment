@@ -53,6 +53,9 @@ export class LoginComponent {
                     case RolesEnum.ADMIN:
                         this.router.navigate(['/admin']);
                         break
+                    case RolesEnum.USER:
+                        this.router.navigate(['/user']);
+                        break;
                 }
             },
             error: () => {

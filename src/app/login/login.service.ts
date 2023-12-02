@@ -25,8 +25,6 @@ export class LoginService {
 
         } else if (loginPayload.userName === 'mohamed' && loginPayload.password === 'mohamed') {
 
-            this.$user.next(new User(loginPayload.userName, RolesEnum.USER));
-
             return this.observableWithRole(RolesEnum.USER, loginPayload);
 
         } else {
