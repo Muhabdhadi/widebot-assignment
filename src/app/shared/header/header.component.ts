@@ -3,6 +3,7 @@ import {LoginService} from "../../login/login.service";
 import {User} from "../../login/model/user";
 import {RolesEnum} from "../../login/enums/roles.enum";
 import {TranslateService} from "@ngx-translate/core";
+import {LanguageEnum} from "../enum/language.enum";
 
 @Component({
   selector: 'app-header',
@@ -32,7 +33,9 @@ export class HeaderComponent implements OnInit {
         this.loginService.changeUserRole(tempRole);
     }
 
-    changeLanguage() {
-        this.translateService.use('ar');
+    changeLanguage(language: LanguageEnum) {
+        this.translateService.use(language);
     }
+
+    protected readonly LanguageEnum = LanguageEnum;
 }
