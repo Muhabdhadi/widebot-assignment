@@ -20,5 +20,19 @@
     "USERS_DASHBOARD": {
         "USERS_LIST": "قائمة المستخدمين",
         "ADD_NEW_USER": "+ اضافة مستخدم"
+    },
+    "PROFILE_PAGE": {
+        "ACCOUNT_DETAILS": "بيانات الحساب",
+        "USERNAME": "اسم المستخدم",
+        "USERNAME_PLACEHOLDER": "اسم المستخدم",
+        "NAME": "الاسم",
+        "NAME_PLACEHOLDER": "الاسم",
+        "EMAIL": "البريد الالكتروني",
+        "EMAIL_PLACEHOLDER": "البريد الالكتروني",
+        "WEBSITE": "الموقع",
+        "WEBSITE_PLACEHOLDER": "الموقع",
+        "PHONE": "رقم الهاتف",
+        "PHONE_PLACEHOLDER": "رقم الهاتف",
+        "UPDATE": "تعديل"
     }
 }

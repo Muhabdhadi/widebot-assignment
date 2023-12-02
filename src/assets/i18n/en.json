@@ -20,5 +20,19 @@
     "USERS_DASHBOARD": {
         "USERS_LIST": "Users List",
         "ADD_NEW_USER": "+ New User"
+    },
+    "PROFILE_PAGE": {
+        "ACCOUNT_DETAILS": "Account Details",
+        "USERNAME": "Username",
+        "USERNAME_PLACEHOLDER": "Username",
+        "NAME": "Name",
+        "NAME_PLACEHOLDER": "Name",
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "Email",
+        "WEBSITE": "Website",
+        "WEBSITE_PLACEHOLDER": "Website",
+        "PHONE": "Phone",
+        "PHONE_PLACEHOLDER": "Phone",
+        "UPDATE": "Update"
     }
 }
