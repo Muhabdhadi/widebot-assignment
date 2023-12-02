@@ -12,16 +12,16 @@
 
                     <div class="login-content">
 
-                        <p class="login-title">Welcome back!</p>
+                        <p class="login-title">{{"LOGIN_PAGE.WELCOME" | translate}}</p>
 
                         <p class="login-desc">
-                            Please login to access your Spaces Dashboard
+                            {{"LOGIN_PAGE.WELCOME_TITLE" | translate}}
                         </p>
 
                         <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
 
                             <div class="form-group">
-                                <label for="Username">Username</label>
+                                <label for="Username">{{"LOGIN_PAGE.USERNAME" | translate}}</label>
                                 <input  [ngStyle]="{'border-color': loginForm.get('userName')?.touched && loginForm.get('userName')?.hasError('required') ? 'red' : '#dee2e6'}"
                                         formControlName="userName"
                                         type="email"
@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="Password">Password</label>
+                                <label for="Password">{{"LOGIN_PAGE.PASSWORD" | translate}}</label>
                                 <input
                                         [ngStyle]="{'border-color': loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required') ? 'red' : '#dee2e6'}"
                                         formControlName="password"
@@ -46,10 +46,10 @@
 
                             <div class="login-actions">
 
-                                <p class="login-forget">Forget Password?</p>
+                                <p class="login-forget">{{"LOGIN_PAGE.FORGET_PASSWORD" | translate}}</p>
 
                                 <div>
-                                    <button [disabled]="isLoading" class="login-btn">LOGIN</button>
+                                    <button [disabled]="isLoading" class="login-btn">{{"LOGIN_PAGE.LOGIN_BTN" | translate}}</button>
                                 </div>
 
                             </div>

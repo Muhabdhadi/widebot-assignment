@@ -34,5 +34,13 @@
         "PHONE": "Phone",
         "PHONE_PLACEHOLDER": "Phone",
         "UPDATE": "Update"
+    },
+    "LOGIN_PAGE": {
+        "LOGIN_BTN": "LOGIN",
+        "WELCOME": "Welcome back!",
+        "WELCOME_TITLE": "Please login to access your Spaces Dashboard",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "FORGET_PASSWORD": "Forget Password?"
     }
 }

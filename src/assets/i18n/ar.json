@@ -34,5 +34,13 @@
         "PHONE": "رقم الهاتف",
         "PHONE_PLACEHOLDER": "رقم الهاتف",
         "UPDATE": "تعديل"
+    },
+    "LOGIN_PAGE": {
+        "LOGIN_BTN": "تسجيل الدخول",
+        "WELCOME": "مرحبا بعودتك",
+        "WELCOME_TITLE": "سجّل الدخول إلى الداشبورد الخاص بك ",
+        "USERNAME": "اسم المستخدم",
+        "PASSWORD": "كلمة المرور",
+        "FORGET_PASSWORD": "نسيت كلمة المرور؟"
     }
 }

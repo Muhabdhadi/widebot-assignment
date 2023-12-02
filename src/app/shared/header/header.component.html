@@ -29,7 +29,7 @@
             </li>
 
             <li *ngIf="!user">
-                <a routerLink="./login" class="login-btn">LOGIN</a>
+                <a routerLink="./login" class="login-btn">{{"LOGIN_PAGE.LOGIN_BTN" | translate}}</a>
             </li>
 
             <li *ngIf="user" (click)="logout()">
