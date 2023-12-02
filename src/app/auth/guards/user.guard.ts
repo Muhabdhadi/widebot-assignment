@@ -4,7 +4,7 @@ import {LoginService} from "../../login/login.service";
 import {map} from "rxjs";
 import {RolesEnum} from "../../login/enums/roles.enum";
 
-export const userGuard: CanActivateFn = (route, state) => {
+export const userGuard: CanActivateFn = () => {
   const loginService = inject(LoginService);
   const router = inject(Router);
   return loginService.getUser.pipe(
