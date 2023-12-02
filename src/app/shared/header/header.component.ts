@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../login/login.service";
 import {User} from "../../login/model/user";
 import {RolesEnum} from "../../login/enums/roles.enum";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import {RolesEnum} from "../../login/enums/roles.enum";
 export class HeaderComponent implements OnInit {
     user: User | null = null;
     RolesEnum = RolesEnum;
-    constructor(private loginService: LoginService) {}
+    constructor(private loginService: LoginService, private translateService: TranslateService) {}
 
     ngOnInit() {
         this.loginService.getUser.subscribe({
@@ -31,4 +32,7 @@ export class HeaderComponent implements OnInit {
         this.loginService.changeUserRole(tempRole);
     }
 
+    changeLanguage() {
+        this.translateService.use('ar');
+    }
 }
