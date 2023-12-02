@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'notosans-medium';
+    src: url(../../assets/fonts/NotoSansArabic-Medium.ttf);
+    font-display: swap;
+}
+@font-face {
+    font-family: 'notosans-light';
+    src: url(../../assets/fonts/NotoSansArabic-Light.ttf);
+    font-display: swap;
+}
+@font-face {
+    font-family: 'notosans-regular';
+    src: url(../../assets/fonts/NotoSansArabic-Regular.ttf);
+    font-display: swap;
+}
+
+$noto-sans-regular: 'notosans-regular';
+$noto-sans-light: 'notosans-light';
+$noto-sans-medium: 'notosans-medium';
