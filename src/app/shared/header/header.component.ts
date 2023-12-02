@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../login/login.service";
 import {User} from "../../login/model/user";
 import {RolesEnum} from "../../login/enums/roles.enum";
-import {TranslateService} from "@ngx-translate/core";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 import {LanguageEnum} from "../enum/language.enum";
 
 @Component({
@@ -13,6 +13,8 @@ import {LanguageEnum} from "../enum/language.enum";
 export class HeaderComponent implements OnInit {
     user: User | null = null;
     RolesEnum = RolesEnum;
+    currentLanguage: LanguageEnum = LanguageEnum.EN;
+    LanguageEnum = LanguageEnum;
     constructor(private loginService: LoginService, private translateService: TranslateService) {}
 
     ngOnInit() {
@@ -22,6 +24,12 @@ export class HeaderComponent implements OnInit {
                 this.user = user;
             }
         });
+
+        this.translateService.onLangChange.subscribe({
+            next: (lang: LangChangeEvent) => {
+                this.currentLanguage = lang.lang as LanguageEnum;
+            }
+        })
     }
 
     logout() {
@@ -37,5 +45,4 @@ export class HeaderComponent implements OnInit {
         this.translateService.use(language);
     }
 
-    protected readonly LanguageEnum = LanguageEnum;
 }

@@ -17,8 +17,15 @@
             </li>
 
             <li>
-                <a (click)="changeLanguage(LanguageEnum.AR)">AR</a>
-                <a (click)="changeLanguage(LanguageEnum.EN)">EN</a>
+                <a *ngIf="currentLanguage === LanguageEnum.EN"
+                   (click)="changeLanguage(LanguageEnum.AR)">
+                    AR
+                </a>
+
+                <a *ngIf="currentLanguage === LanguageEnum.AR"
+                   (click)="changeLanguage(LanguageEnum.EN)">
+                    EN
+                </a>
             </li>
 
             <li *ngIf="!user">
