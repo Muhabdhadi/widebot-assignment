@@ -5,7 +5,8 @@
 
     <div>
         <ul class="navbar-list">
-            <li><a routerLink="./admin">{{'HEADER.HOME' | translate}}</a></li>
+            <li *ngIf="user"><a routerLink="./admin">{{'HEADER.HOME' | translate}}</a></li>
+
             <li *ngIf="user?.role === RolesEnum?.ADMIN && user?.originalRole === RolesEnum?.ADMIN"
                 (click)="changeViewRole(RolesEnum.USER)">
                 <a routerLink="./admin">{{'HEADER.VIEW_AS_USER' | translate}}</a>
