@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../login/login.service";
 import {User} from "../../login/model/user";
+import {RolesEnum} from "../../login/enums/roles.enum";
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,13 @@ import {User} from "../../login/model/user";
 })
 export class HeaderComponent implements OnInit {
     user: User | null = null;
+    RolesEnum = RolesEnum;
     constructor(private loginService: LoginService) {}
 
     ngOnInit() {
         this.loginService.getUser.subscribe({
             next: (user) => {
+                console.log(user);
                 this.user = user;
             }
         });
@@ -22,4 +25,10 @@ export class HeaderComponent implements OnInit {
     logout() {
         this.loginService.logout();
     }
+
+    changeViewRole(tempRole: RolesEnum) {
+        console.log(tempRole);
+        this.loginService.changeUserRole(tempRole);
+    }
+
 }

@@ -6,8 +6,16 @@
     <div>
         <ul class="navbar-list">
             <li><a routerLink="./admin">HOME</a></li>
-            <li><a>ABOUT</a></li>
-            <li><a>CONTACT</a></li>
+            <li *ngIf="user?.role === RolesEnum?.ADMIN && user?.originalRole === RolesEnum?.ADMIN"
+                (click)="changeViewRole(RolesEnum.USER)">
+                <a routerLink="./admin">View as user</a>
+            </li>
+
+            <li *ngIf="user?.role === RolesEnum?.USER && user?.originalRole === RolesEnum?.ADMIN"
+                (click)="changeViewRole(RolesEnum.ADMIN)">
+                <a routerLink="./admin">Return as admin</a>
+            </li>
+
             <li *ngIf="!user">
                 <a routerLink="./login" class="login-btn">LOGIN</a>
             </li>

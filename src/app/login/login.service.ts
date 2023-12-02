@@ -10,10 +10,25 @@ import {Router} from "@angular/router";
 })
 export class LoginService {
     private $user: BehaviorSubject<User | null> = new BehaviorSubject<null | User>(null);
+    private user!: User;
     constructor(private router: Router) {}
 
     get getUser(): Observable<User | null> {
         return this.$user.asObservable();
+    }
+
+    changeUserRole(tempRole: RolesEnum) {
+        this.user = new User(this.user?.username, tempRole, this.user.originalRole);
+
+        this.$user.next(this.user);
+
+        if(tempRole === RolesEnum.USER) {
+            this.router.navigate(['./user']);
+        }
+
+        if(tempRole === RolesEnum.ADMIN) {
+            this.router.navigate(['./admin']);
+        }
     }
 
     login(loginPayload: LoginInterface): Observable<RolesEnum> {
@@ -38,11 +53,11 @@ export class LoginService {
         return of(role)
             .pipe(
                 tap(_ => {
-                    const user: User | null = new User(loginPayload.userName, role);
+                    this.user = new User(loginPayload.userName, role, role);
 
-                    this.$user.next(user);
+                    this.$user.next(this.user);
 
-                    localStorage.setItem('user', JSON.stringify(user))
+                    localStorage.setItem('user', JSON.stringify(this.user))
                 } )
             )
     }
@@ -54,9 +69,9 @@ export class LoginService {
     }
 
     autoLogin() {
-        const user = JSON.parse(localStorage.getItem('user') as string);
-        if(user) {
-            this.$user.next(user);
+        this.user = JSON.parse(localStorage.getItem('user') as string);
+        if(this.user) {
+            this.$user.next(this.user);
         }
     }
 }
