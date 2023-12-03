@@ -22,13 +22,13 @@ password: mohamed
 
 
 ## Application Features
-1- Add Users
-2- Update user
-3- Edit user
-4- delete a user when confirming the delete action
-4- when the user is an admin, you can display the application as a non-admin user
-5- support two languages ( Arabic and English)
-6- route guards for all routes 
+1- Add Users <br>
+2- Update user <br>
+3- Edit user <br>
+4- delete a user when confirming the delete action <br>
+4- when the user is an admin, you can display the application as a non-admin user <br>
+5- support two languages ( Arabic and English) <br>
+6- route guards for all routes <br>
 
 ## Application Structure
 
