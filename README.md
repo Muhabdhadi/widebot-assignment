@@ -1,27 +1,58 @@
 # WidebotAssignment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+This is a project for a simple user management app. built as an assignment for widebot company
 
-## Development server
+## Angular Version
+This angular application uses angular version 16.2.0
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Node Version
+application build using node version 18.18.1
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Application Features
+1- Add Users
+2- Update user
+3- Edit user
+4- delete a user when confirming the delete action
+4- when the user is an admin, you can display the application as a non-admin user
+5- support two languages ( Arabic and English)
+6- route guards for all routes 
 
-## Build
+## Application Structure
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+this application contains 3 modules:
 
-## Running unit tests
+- **Admin**:
+- **Users**:
+- **Login**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Admin Module**:
+this module responsible for all admin-related components, services, and functionalities
 
-## Running end-to-end tests
+it has 3 components each has its responsibility.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Users: display all lists of users
+user-modal: create or update users
+confirmation-modal: delete a user but display a confirmation popup first
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Users**:
+this module responsible for all non-admin related components, services, and functionalities
+
+it has one component.
+
+**Profile**: responsible for displaying and updating user profile information.
+
+
+**Guards**:
+the application uses 3 activated guards:
+
+1- **Admin guard**: only active route when the user role is admin
+2- **User guard**: only active route when the role is user
+3- **Auth guard**: only active route when the user is logged in
+
+
+**Localization**:
+The app has 2 languages, Arabic and English 
+
+implementing localization using ngx-translate
