@@ -10,12 +10,12 @@ application build using node version 18.18.1
 
 ## Application credentials
 
-**admin user:**
-username: admin
+**admin user:** <br>
+username: admin <br>
 password: admin
 
-**non-admin user**
-username: mohamed
+**non-admin user** <br>
+username: mohamed <br>
 password: mohamed
 
 
