@@ -8,6 +8,18 @@ This angular application uses angular version 16.2.0
 ## Node Version
 application build using node version 18.18.1
 
+## Application credentials
+
+**admin user:**
+username: admin
+password: admin
+
+**non-admin user**
+username: mohamed
+password: mohamed
+
+
+
 
 ## Application Features
 1- Add Users
