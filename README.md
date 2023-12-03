@@ -43,9 +43,9 @@ this module responsible for all admin-related components, services, and function
 
 it has 3 components each has its responsibility.
 
-Users: display all lists of users
-user-modal: create or update users
-confirmation-modal: delete a user but display a confirmation popup first
+Users: display all lists of users <br>
+user-modal: create or update users <br>
+confirmation-modal: delete a user but display a confirmation popup first <br>
 
 
 **Users**:
@@ -59,9 +59,9 @@ it has one component.
 **Guards**:
 the application uses 3 activated guards:
 
-1- **Admin guard**: only active route when the user role is admin
-2- **User guard**: only active route when the role is user
-3- **Auth guard**: only active route when the user is logged in
+1- **Admin guard**: only active route when the user role is admin <br>
+2- **User guard**: only active route when the role is user <br>
+3- **Auth guard**: only active route when the user is logged in <br>
 
 
 **Localization**:
